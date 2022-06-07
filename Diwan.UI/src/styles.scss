@@ -1,0 +1,87 @@
+
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+.mat-flat-button.mat-accent,
+.mat-raised-button.mat-accent,
+.mat-fab.mat-accent,
+.mat-mini-fab.mat-accent {
+    background-color: #564079;
+    --background-color: #564079;
+}
+
+div,
+span,
+button,
+input,
+label,
+button,
+mat-card-title,
+mat-toolbar {
+    font-family: Ara_Alharbi_Rehular !important;
+}
+
+html,body {
+  direction: rtl;
+    height: 100%;
+    color: #747474;
+    background-color: white;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    color: #747474;
+    background-color: #e9e9e9;
+}
+
+.mat-icon {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    font-size: 20px !important;
+    height: 20px !important;
+    width: 20px !important;
+    vertical-align: middle;
+}
+
+.mat-step-header {
+    margin-left: 24px;
+    margin-right: 24px;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    height: 40px !important;
+    .mat-step-label {
+        padding: 0px 10px !important;
+    }
+}
+
+.mat-horizontal-content-container {
+    padding-bottom: 0px !important;
+    padding-top: 24px !important;
+}
+
+.mat-step-icon .mat-icon {
+    font-size: 18px !important;
+    width: 18px !important;
+    height: 18px !important;
+}
+
+mat-grid-tile {
+    min-height: calc(64px) !important;
+}
+
+.mat-tab-body-wrapper,
+.mat-tab-body-content,
+.mat-tab-body.mat-tab-body-active {
+    overflow-y: hidden !important;
+}
+
+.mat-dialog-created-order {
+    max-height: 100%;
+    .mat-dialog-content {
+        max-height: 100%;
+    }
+}

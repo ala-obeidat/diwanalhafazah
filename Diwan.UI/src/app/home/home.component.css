@@ -1,0 +1,27 @@
+.row-div{
+    display: inline-block;
+    margin: 0 3px;
+}
+.first-item,.last-item{
+    position: absolute;
+    top:35%;
+}
+.first-item{
+    left: 88%;
+}
+.last-item{
+    left: 5px;
+}
+.center{
+    text-align: center;
+    margin: 0 auto;
+}
+.first-div{
+    width: 20%;
+    max-width: 20%;
+}
+
+.second-item{
+    width: 90%;
+    max-width: 90%;
+}

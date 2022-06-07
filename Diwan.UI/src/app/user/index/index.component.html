@@ -1,0 +1,62 @@
+<div class="container full">
+   
+  <div class="row md-12">
+    <div class="col-md-3">
+      <a href="#" routerLink="/user/create/" class="btn btn-success">إضافة مستخدم</a>
+    </div>
+    <div class="col-md-3 form-outline">
+      <select (change)="searchLevel($event)" class="form-control">
+        <option selected value="-1">المستوى</option>
+        <option value="0">الأول</option>
+        <option value="1">الثاني</option>
+        <option value="1">الثالث</option>
+      </select>
+  </div>
+  
+  <div class="col-md-3 form-outline">
+    <select (change)="searchGender($event)" class="form-control">
+      <option selected value="-1">الجنس</option>
+      <option value="0">ذكر</option>
+      <option value="1">أنثى</option>
+    </select>
+</div>
+  <div class="col-md-3 form-outline">
+    <input type="search" (keyup)="search($event)" id="form1" class="form-control" placeholder="الإسم أو الموبايل" aria-label="Search" />
+</div>
+    
+  </div>
+    
+    <p>الإجمالي {{tableData.length}} </p>
+    <table class="table table-sm table-hover table-bordered table-striped thead-dark">
+      <thead class="">
+      <tr>
+        <th>الرقم</th>
+        <th>الإسم</th>
+        <th>موبايل</th>
+        <th>المستوى</th>
+        <th>الجنس</th>
+        <th>العمر</th>
+        <th>الصفحة</th>
+        <th width="320px">الإجراءات</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of tableData;let i = index">
+        <td>{{ i+1 }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.mobile }}</td>
+        <td>{{ user.level==0?"الأول":user.level==1?"الثاني":"الثالث" }}</td>
+        <td>{{ user.gender==0?"ذكر":"أنثى" }}</td>
+        <td>{{ user.age }}</td>
+        <td>{{ user.currentPage }}</td>
+        <td>
+          <a href="#" [routerLink]="['/user/', user.id, 'view']" class="btn btn-info">عرض</a>
+          &nbsp;
+          <a href="#" [routerLink]="['/user/', user.id, 'edit']" class="btn btn-primary">تعديل</a>
+          &nbsp;
+          <button type="button" (click)="deletePost(user.id)" class="btn btn-danger">حذف</button>
+        </td>
+      </tr>
+    </tbody>
+    </table>
+ </div>

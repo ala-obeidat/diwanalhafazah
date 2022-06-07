@@ -1,0 +1,59 @@
+.div-login-main{
+  background-color: #fff;
+  .login-page{
+      width: 100%;
+      margin: 5% auto;
+      position: relative;
+      text-align: center;
+
+      .div-lang-btn{
+          position: absolute;
+          bottom: 0px;
+          color: white;
+          user-select: none;
+          cursor: pointer;
+          &:hover{
+              font-weight: bold;
+          }
+      }
+      .title{
+          font-size: 36px;
+          display: block;
+          width: 100%;
+          text-align: center;
+          color: #fff;
+      }
+
+      .msg{
+          color: #555;
+          margin-bottom: 10px;
+          text-align: justify;
+          font-size: 14px;
+          padding: 0px 15px;
+      }
+  }
+
+
+  table{
+      width: 96%;
+      tr{
+          td:first-child{
+              text-align: start;
+          }
+          td:last-child{
+              text-align: end;
+          }
+      }
+
+  }
+
+  .link{
+    cursor: pointer;
+    color: #0B5ED7;
+  }
+
+}
+
+ 
+
+

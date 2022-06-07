@@ -1,0 +1,181 @@
+<div class="container-fluid row bg-white py-2">
+  <div class="div-login-main col-md-4  ps-2">
+    <div class="img text-center" >
+      <img class="img-fluid" src="../../assets/images/logo.jpeg" alt="">
+    </div>
+
+    <div class="authform pe-3 my-3">
+
+      <div class="loginForm" *ngIf="isLoginMode">
+
+        <div class="d-flex align-items-baseline">
+          <h3>تسجيل الدخول</h3>
+          <span class="link pe-2" (click)="onSwitchUser()"> {{!isUserLogin ? 'تسجيل الدخول المستخدم ؟' : 'تسجيل الدخول كمسئول ؟' }} </span>
+        </div>
+
+        <form [formGroup]="adminLogin" (ngSubmit)="onSubmit(adminLogin)" *ngIf="isLoginMode && !isUserLogin">
+          <div class="pb-3">
+            <label for="username">اسم المستخدم</label>
+            <input class="form-control" id="username" placeholder="اسم المستخدم"  type="email" formControlName="username"
+            [class.is-valid]="adminLogin.get('username')?.valid && adminLogin.get('username')?.touched"
+            [class.is-invalid]="adminLogin.get('username')?.invalid && adminLogin.get('username')?.touched">
+            <small class="text-danger" *ngIf="adminLogin.get('username')?.errors"><i class="bi bi-info fs-5"></i>حقل المستخدم اجباري.</small>
+          </div>
+
+          <div class=" pb-1">
+            <label for="password"> كلمة المرور </label>
+            <input class="form-control" placeholder="كلمة المرور" id="password"  type="password" formControlName="password"
+            [class.is-valid]="adminLogin.get('password')?.valid && adminLogin.get('password')?.touched"
+            [class.is-invalid]="adminLogin.get('password')?.invalid && adminLogin.get('password')?.touched">
+            <small class="text-danger" *ngIf="adminLogin.get('password')?.errors"><i class="bi bi-info fs-5"></i>حقل كلمة المرور اجباري.</small>
+          </div>
+
+          <div class="my-3">
+            <button class="btn btn-primary p-1 col-12" [disabled]="adminLogin.invalid"  type="submit"> تسجيل الدخول</button>
+            <h6 class="text-danger fs-6 mt-3" *ngIf="error">{{ error | async }}</h6>
+          </div>
+          <div class="footer-sign py-2">
+            <h4>ليس لديك حساب؟ <span class="link " (click)="onSwitchMode()"> انشاء حساب جديد!</span></h4>
+          </div>
+
+        </form>
+
+        <form [formGroup]="Userlogin" (ngSubmit)="userlogin(Userlogin)" *ngIf="isLoginMode && isUserLogin  && !isUserList">
+
+          <div class=" pb-1">
+            <label for="mobile"> الموبايل </label>
+            <input class="form-control" placeholder=" الموبايل" id="mobile"  type="text" formControlName="mobile"
+            [class.is-valid]="Userlogin.get('mobile')?.valid && Userlogin.get('mobile')?.touched"
+            [class.is-invalid]="Userlogin.get('mobile')?.invalid && Userlogin.get('mobile')?.touched">
+            <small class="text-danger" *ngIf="Userlogin.get('mobile')?.errors"><i class="bi bi-info fs-5"></i>حقل الموبايل اجباري .</small>
+          </div>
+
+          <div class="my-3">
+            <button class="btn btn-primary p-1 col-12" [disabled]="Userlogin.invalid"  type="submit"> تسجيل الدخول</button>
+            <h6 class="text-danger fs-6 mt-3" *ngIf="error">{{ error | async }}</h6>
+          </div>
+          <div class="footer-sign py-2">
+            <h6 >ليس لديك حساب؟ <span class="text-primary " style="cursor: pointer;" (click)="onSwitchMode()"> انشاء حساب جديد!</span></h6>
+          </div>
+
+        </form>
+
+        <form [formGroup]="UserloginMobile" (ngSubmit)="userLoginMobile(UserloginMobile)" *ngIf="isUserLogin && isUserList">
+
+          <div>
+            <label for="userList">الاسم</label>
+            <select
+                formControlName="userList" id="userList" class="form-control" >
+                <option *ngFor="let user of userList[0]" [value]="user">{{user}}</option>
+            </select>
+            <div class="my-3">
+              <button class="btn btn-primary p-1 col-12" [disabled]="UserloginMobile.invalid" type="submit"> تسجيل الدخول</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+                    <!------ انشاء حساب -------->
+    <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="!isLoginMode">
+        <h2> انشاء حساب</h2>
+        <div class="form-group">
+            <label for="name">الإسم</label>
+            <input
+                formControlName="name"
+                id="name"
+                type="text"
+                class="form-control">
+            <div *ngIf="f['name'].touched && f['name'].invalid" class="text-danger pt-2 pe-2">
+                <small *ngIf="f['name'].errors && f['name'].errors['required']">حقل الإسم إجباري</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="mobile">موبايل</label>
+            <input
+                formControlName="mobile"
+                id="mobile"
+                type="text"
+                class="form-control">
+            <div *ngIf="f['mobile'].touched && f['mobile'].invalid" class="text-danger pt-2 pe-2">
+                <small *ngIf="f['mobile'].errors && f['mobile'].errors['required']">حقل الموبايل اجباري</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="level">المستوى</label>
+            <select
+                formControlName="level"
+                id="level"
+                class="form-control">
+                <option value="0">الأول</option>
+                <option value="1">الثاني</option>
+                <option value="2">الثالث</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="gender">الجنس</label>
+            <select
+                formControlName="gender"
+                id="gender"
+                class="form-control">
+                <option value="0">ذكر</option>
+                <option value="1">أنثى</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="age">العمر</label>
+            <input
+                formControlName="age"
+                id="age"
+                type="number"
+                class="form-control">
+        </div>
+
+        <div class="my-2">
+          <button  class="btn btn-success ms-2" type="submit" [disabled]="!form.valid">إنشاء</button>
+        <span > <span class="link " (click)="onSwitchMode()"> تسجيل الدخول ! </span></span>
+        </div>
+    </form>
+
+    </div>
+  </div>
+
+  <div class="col-md-8 text-center">
+    <h1 class="">ديوان الحفظة</h1>
+    <p>هو ديوان أنشئ ليكون منصة للطلاب الراغبين بحفظ القرآن الكريم</p>
+    <div _ngcontent-wan-c236="" class="div-dashboard-item"><div _ngcontent-wan-c236="" class="div-icon"><mat-icon _ngcontent-wan-c236="" role="img" color="primary" class="mat-icon notranslate mat-primary material-icons" aria-hidden="true" data-mat-icon-type="font">group</mat-icon></div><div _ngcontent-wan-c236="" class="div-value">
+       {{dash?.userCount}} </div> عدد المستخدمين </div>    
+    <div>
+      <iframe width="300" height="300" src="https://www.youtube.com/embed/SAmdflCd3wc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+      <table style="text-align: center;margin: 0 auto;">
+        <tr >
+          <td colspan="3" style="width: 100%; text-align: start;">
+             للتواصل معنا عبر حساباتنا </td>
+            </tr>
+            <tr _ngcontent-eai-c238=""><td _ngcontent-eai-c238="">
+              <a _ngcontent-eai-c238="" href="https://t.me/diwanalhafazah" target="_blank" class="a-link-action">
+                <mat-icon _ngcontent-eai-c238="" role="img" class="mat-icon notranslate material-icons mat-icon-no-color" 
+                style="font-size: 32px !important;" aria-hidden="true" data-mat-icon-type="font"> 
+                telegram</mat-icon>
+                </a>
+              </td>
+              <td _ngcontent-eai-c238="">
+                <a _ngcontent-eai-c238="" href="mailto:diwan28422@gmail.com" target="_blank" class="a-link-action">
+                  <mat-icon _ngcontent-eai-c238="" role="img" class="mat-icon notranslate material-icons mat-icon-no-color" style="font-size: 32px !important;" aria-hidden="true" data-mat-icon-type="font"> 
+                    email</mat-icon></a>
+                  </td>
+                  <td _ngcontent-eai-c238="">
+                    <a _ngcontent-eai-c238="" href="https://www.youtube.com/channel/UCfMjlJMkSxc2NrLtQ2Ubskg" target="_blank" class="a-link-action">
+                      <mat-icon _ngcontent-eai-c238="" role="img" class="mat-icon notranslate material-icons mat-icon-no-color" style="font-size: 32px !important;" aria-hidden="true" data-mat-icon-type="font"> smart_display </mat-icon></a></td></tr>
+                    </table>
+                  <br>
+                  </div>
+  
+
+</div>
+

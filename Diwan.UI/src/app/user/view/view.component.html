@@ -1,0 +1,52 @@
+<div class="container">
+    <h1>بيانات المستخدم</h1>
+    <ul>
+        <li>
+            <strong>الإسم: </strong>
+            <span>{{ user.user.name }}</span>
+        </li>
+        <li>
+            <strong>موبايل: </strong>
+            <span>{{ user.user.mobile }}</span>
+        </li>
+        <li>
+            <strong>المستوى: </strong>
+            <span>{{ user.user.level+1 }}</span>
+        </li>
+        <li>
+            <strong>الجنس: </strong>
+            <span>{{ user.user.gender==0?"ذكر":"أنثى" }}</span>
+        </li>
+        <li>
+            <strong>العمر: </strong>
+            <span>{{ user.user.age }}</span>
+        </li>
+        <li>
+            <strong>الصفحة الحالية: </strong>
+            <span>{{ user.user.currentPage }}</span>
+        </li>
+    </ul>
+    <hr>
+    <div>
+        <h2>حركات الحفظ</h2>
+        <table class="table table-sm table-hover table-bordered table-striped thead-dark">
+            <thead class="">
+            <tr>
+              <th>الصفحة</th>
+              <th>درجة الإتقان</th>
+              <th>التاريخ</th>
+              <th>الوقت</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tran of user.transactions;let i = index">
+              <td>{{ tran.page }}</td>
+              <td>{{ tran.percentage==1?"90%":tran.percentage==2?"95%":"100%" }}</td>
+              <td>{{ tran.date }}</td>
+              <td>{{ tran.time }}</td>
+            </tr>
+          </tbody>
+          </table>
+    </div>
+    <a href="#" routerLink="/user/index" class="btn btn-primary">رجوع إلى السمتخدمين</a>
+</div>

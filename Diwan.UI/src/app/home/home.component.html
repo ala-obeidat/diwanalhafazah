@@ -1,0 +1,69 @@
+<div class="container">
+<br>
+    <div class="row col-md-12">
+        <div class="">
+          <div class="row-div">
+            <h3>انتقال إلى</h3>
+          </div>
+          <div class="row-div">
+            <input (keyup)="goToPageEvent($event)" (change)="goToPageEvent($event)" id="page" placeholder="الصفحة" type="number" class="form-control" [value]="currentItem.CurrentPage" min="1" max="604" formControlName="page">
+          </div>
+          
+        <div class="row-div">
+          <button class="btn btn-info" (click)="openDialog()">{{saveText}}</button>
+        </div>
+        </div>
+        
+    </div>
+    <div>
+    <div class="item-page">
+    
+      <div class="first-item">
+        <mat-icon (click)="prePage()" style="transform: scale(3);cursor: pointer;">navigate_next</mat-icon>
+      </div>
+      <div class="second-item">
+        <img width="280" [src]="currentItem.img" (click)="openImage()">
+      </div>
+      <div class="last-item">
+        <mat-icon (click)="nextPage()" style="transform: scale(3);cursor: pointer;">navigate_before</mat-icon>
+      </div>
+      
+    </div>
+  </div>
+    <br>
+    <div class="center">
+      <span class="fs-6 my-2 text-dark mx-auto position-relative">الصفحة الحالية {{currentItem.CurrentPage}} من {{maxPage}} </span>
+    </div>
+    <div class="">
+        <div class="">
+          <audio controls #audioOption>
+            <source [src]="currentItem.audio" type="audio/mp3">
+            Your browser does not support the audio element.
+          </audio> 
+        </div>
+      </div>
+      
+    </div>
+
+
+<ng-template #Image>
+  <img class="img-fluid" [src]="currentItem.img" >
+</ng-template>
+
+<ng-template #save>
+  <form [formGroup]="transactionForm" (ngSubmit)="submitTransaction()">
+    <mat-form-field appearance="fill" >
+    <mat-label class="float-end">نسبة الحفظ</mat-label>
+    <mat-select  name="percentage" formControlName="percentage">
+      <mat-option *ngFor="let percent of percentage"
+       [value]="percent.value" >
+        {{percent.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div mat-dialog-actions>
+    <button class="btn btn-danger mx-3" [mat-dialog-close]="true">اغلاق</button>
+    <button class="btn btn-success" type="submit" [disabled]="transactionForm.invalid" [mat-dialog-close]="isClose">حفظ</button>
+  </div>
+  </form>
+</ng-template>
